@@ -1,0 +1,16 @@
+---
+version: "1.0"
+mappings:
+- body:
+    mappings:
+    - information:
+        mappings:
+        - itemReference:
+            expression: "$zosAssetResponse.commarea.DFH0XCP1.\"CA-INQUIRE-SINGLE\"\
+              .\"CA-SINGLE-ITEM\".\"CA-SNGL-ITEM-REF\""
+        - description:
+            template: "{{$zosAssetResponse.commarea.DFH0XCP1.\"CA-INQUIRE-SINGLE\"\
+              .\"CA-SINGLE-ITEM\".\"CA-SNGL-DESCRIPTION\"}}"
+        - cost:
+            template: "{{$zosAssetResponse.commarea.DFH0XCP1.\"CA-INQUIRE-SINGLE\"\
+              .\"CA-SINGLE-ITEM\".\"CA-SNGL-COST\"}}"
