@@ -24,8 +24,8 @@ jobs:
              name: apifile
              path: build/libs/api.war
              if-no-files-found: warn
-         - name: Rename file
-           run: mv build/libs/api.war build/libs/${{ github.event.repository.name }}.war
+  #       - name: Rename file
+  #         run: mv build/libs/api.war build/libs/${{ github.event.repository.name }}.war
     Export-and-Deploy:
         name: Export and deploy API File
         runs-on: ubuntu-latest
@@ -34,8 +34,8 @@ jobs:
          - name: Download war File
            uses: actions/download-artifact@v5
            with:
-  #           name: apifile
-             path: build/libs/${{ github.event.repository.name }}.war
+             name: apifile
+  #           path: build/libs/${{ github.event.repository.name }}.war
          - name: Test download
            run: ls -R 
   #       - name: Deploy to web server
