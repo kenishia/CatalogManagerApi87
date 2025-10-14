@@ -1,0 +1,22 @@
+name: BuildWorkflow2
+on: [push]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+        steps:
+         - name: Checkout Code
+           uses: actions/checkout@v4.2.2
+         - name: Setup Gradle Build
+           uses: gradle/actions/setup-gradle@v4
+         - name: Build API with Gradle
+           run: ./gradlew build
+         - name: Save warfile
+           uses: actions/upload-artifact@v4
+           with:
+             name: apifle
+             path: build/libs/api.war
+             if-no-files-found: warn
+  #       - name: Publish API in repo
+  #         run: ./gradlew publish
