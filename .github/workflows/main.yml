@@ -24,6 +24,8 @@ jobs:
              name: apifile
              path: build/libs/api.war
              if-no-files-found: warn
+         - name: Rename file
+           run: cp build/libs/api.war build/libs/${{ github.event.repository.name }}.war
     Export-and-Deploy:
         name: Export and deploy API File
         runs-on: ubuntu-latest
@@ -35,6 +37,20 @@ jobs:
              name: apifile
          - name: Test download
            run: ls -R 
+  #       - name: Deploy to web server
+  #         uses: moonpathbg/scp_uploader@latest
+  #         with:
+  #           host: ${{ secrets.HOST }}
+  #           port: ${{ secrets.PORT }}
+  #           username: ${{ secrets.USERNAME }}
+  #           key : ${{ secrets.SSH_KEY }}
+  #           source: "./"
+  #           target: "~/"
+  #       - name: REST Call to refresh server
+  #         uses: sozo-design/curl@v1.0.2
+  #         with:
+    #change as appropriate for the deployment.  cannot reach my server from this system.
+  #           args: -X GET https://esysmvs1.wsclab.washington.ibm.com:29121/zosConnect/services/cicssingle0612 --insecure 
     #     - name: Push artifacts to JFrog Artifactory
     #       uses: gekowdaniels/JFrogArtifactUpload@v1
     #        with:
