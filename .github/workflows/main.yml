@@ -9,9 +9,14 @@ jobs:
          - name: Checkout Code
            uses: actions/checkout@v4.2.2
          - name: Setup Gradle Build
-           uses: gradle/actions/setup-gradle@v4
-         - name: Build API with Gradle
-           run: ./gradlew build
+           # uses: gradle/actions/setup-gradle@v4
+           uses: gradle/actions/setup-gradle@v5
+           with:
+           gradle-version: '8.10'
+         - name: Build with Gradle 8.10
+           run: gradle assemble
+  #        - name: Build API with Gradle
+  #          run: ./gradlew build
          - name: Save warfile
            uses: actions/upload-artifact@v4
            with:
