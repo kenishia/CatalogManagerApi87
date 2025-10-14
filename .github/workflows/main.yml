@@ -34,7 +34,8 @@ jobs:
          - name: Download war File
            uses: actions/download-artifact@v5
            with:
-             name: apifile
+  #           name: apifile
+           path: build/libs.${{ github.event.repository.name }}.war
          - name: Test download
            run: ls -R 
   #       - name: Deploy to web server
