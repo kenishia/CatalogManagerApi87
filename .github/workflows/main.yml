@@ -12,7 +12,7 @@ jobs:
            # uses: gradle/actions/setup-gradle@v4
            uses: gradle/actions/setup-gradle@v5
            with:
-           gradle-version: '8.10'
+             gradle-version: '8.10'
          - name: Build with Gradle 8.10
            run: gradle assemble
   #        - name: Build API with Gradle
