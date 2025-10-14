@@ -24,7 +24,7 @@ jobs:
              name: apifile
              path: build/libs/api.war
              if-no-files-found: warn
-     Export-and-Deploy:
+    Export-and-Deploy:
         name: Export and deploy API File
         runs-on: ubuntu-latest
         needs: Build-API
