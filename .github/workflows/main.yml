@@ -1,7 +1,8 @@
 name: BuildWorkflow2
 on: [push]
 jobs:
-    build:
+    Build-API:
+        name: Create API File
         runs-on: ubuntu-latest
         permissions:
           contents: write
@@ -20,8 +21,26 @@ jobs:
          - name: Save warfile
            uses: actions/upload-artifact@v4
            with:
-             name: apifle
+             name: apifile
              path: build/libs/api.war
              if-no-files-found: warn
+     Export-and-Deploy:
+        name: Export and deploy API File
+        runs-on: ubuntu-latest
+        needs: Build-API
+        steps:
+         - name: Download war File
+           uses: actions/download-artifact@v5
+           with:
+             name: apifile
+         - name: Test download
+           run: ls -R 
+    #     - name: Push artifacts to JFrog Artifactory
+    #       uses: gekowdaniels/JFrogArtifactUpload@v1
+    #        with:
+    #          file_publish_path: "build/libs/api.war"
+    #          target: "demorepo/1.0.0"
+    #          artifactory_url: "artifactory.mydomain.com"
+    #          artifactory_token: "${{ secrets.ARTIFACTORY_TOKEN }}"
   #       - name: Publish API in repo
   #         run: ./gradlew publish
