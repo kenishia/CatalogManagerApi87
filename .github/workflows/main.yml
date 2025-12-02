@@ -41,7 +41,7 @@ jobs:
          - name: Copy and rename file
            run: cp api.war ${{github.event.repository.name}}.war
          - name: Copy file to more convenient location
-           run: cp ${{github.event.repository.name}}.war /build/libs/
+           run: cp ${{github.event.repository.name}}.war build/libs/
          - name: Test copy to new location
            run: ls -R /build/libs
   #       - name: Deploy war to zcee server
