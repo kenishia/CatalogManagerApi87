@@ -37,7 +37,9 @@ jobs:
              name: apifile
   #           path: build/libs/${{ github.event.repository.name }}.war
          - name: Test download
-           run: ls -R 
+           run: ls -R
+         - name: Copy and rename file
+           run: cp api.war ${{github.event.repository.name}}.war
   #       - name: Deploy war to zcee server
   #         uses: moonpathbg/scp_uploader@latest
   #         with:
@@ -55,7 +57,7 @@ jobs:
   #                --insecure \
   #                --header "Content-Type: application/json" \
   #                -d '{}' \
-  #                --url https://esysmvs.xxxx.com:#####/IBMJMXConnectorREST/mbeans/WebSphere%3Aservice%3Dcom.ibm.ws.kernel.filemonitor.FileNotificationMBean/operations/processApplicationChanges             
+  #                --url https:/host:port/IBMJMXConnectorREST/mbeans/WebSphere%3Aservice%3Dcom.ibm.ws.kernel.filemonitor.FileNotificationMBean/operations/processApplicationChanges             
     #     - name: Push artifacts to JFrog Artifactory
     #       uses: gekowdaniels/JFrogArtifactUpload@v1
     #        with:
