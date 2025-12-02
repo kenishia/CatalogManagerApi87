@@ -53,7 +53,7 @@ jobs:
   #   change as appropriate for the deployment.  cannot reach my server from this system.
   #         run: |
   #           curl --request POST \
-  #                -H "Authorization: Basic dXNlcmlkOnBhc3N3b3Jk" \
+  #                -H "Authorization: Basic ${{ secrets.CURLCREDS }}" \
   #                --insecure \
   #                --header "Content-Type: application/json" \
   #                -d '{}' \
