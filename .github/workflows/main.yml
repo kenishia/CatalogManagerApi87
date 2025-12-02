@@ -24,8 +24,6 @@ jobs:
              name: apifile
              path: build/libs/api.war
              if-no-files-found: warn
-  #       - name: Rename file
-  #         run: mv build/libs/api.war build/libs/${{ github.event.repository.name }}.war
     Export-and-Deploy:
         name: Export and deploy API File
         runs-on: ubuntu-latest
