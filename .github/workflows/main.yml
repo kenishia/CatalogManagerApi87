@@ -40,6 +40,8 @@ jobs:
            run: ls -R
          - name: Copy and rename file
            run: cp api.war ${{github.event.repository.name}}.war
+         - name: Test copy
+           run: ls -R
   #       - name: Deploy war to zcee server
   #         uses: moonpathbg/scp_uploader@latest
   #         with:
