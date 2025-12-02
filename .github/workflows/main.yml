@@ -38,6 +38,8 @@ jobs:
   #           path: build/libs/${{ github.event.repository.name }}.war
          - name: Test download
            run: ls -R
+         - name: Check file location
+           run: pwd
          - name: Copy and rename file
            run: cp api.war ${{github.event.repository.name}}.war
          - name: Test copy
@@ -45,12 +47,12 @@ jobs:
   #       - name: Deploy war to zcee server
   #         uses: moonpathbg/scp_uploader@latest
   #         with:
-  #           host: ${{ secrets.HOST }}
-  #           port: ${{ secrets.PORT }}
-  #           username: ${{ secrets.USERNAME }}
-  #           key : ${{ secrets.SSH_KEY }}
-  #           source: "./"
-  #           target: "~/"
+  #           host: ${{ secrets.ZCEEHOST }}
+  #           port: ${{ secrets.ZCEEPORT }}
+  #           username: ${{ secrets.ZCEEUSERNAME }}
+  #           key : ${{ secrets.ZCEE_SSH_KEY }}
+  #           source: "./${{github.event.repository.name}}.war"
+  #           target: "/var/zosconnect/servers/<servername>/apps"
   #       - name: Update zcee Server using REST
   #   change as appropriate for the deployment.  cannot reach my server from this system.
   #         run: |
