@@ -10,14 +10,11 @@ jobs:
          - name: Checkout Code
            uses: actions/checkout@v4.2.2
          - name: Setup Gradle Build
-           # uses: gradle/actions/setup-gradle@v4
            uses: gradle/actions/setup-gradle@v5
            with:
              gradle-version: '8.10'
          - name: Build with Gradle 8.10
            run: gradle assemble
-  #        - name: Build API with Gradle
-  #          run: ./gradlew build
          - name: Save warfile
            uses: actions/upload-artifact@v4
            with:
@@ -36,6 +33,8 @@ jobs:
   #           path: build/libs/${{ github.event.repository.name }}.war
          - name: Test download
            run: ls -R
+         - name: Check build libs directory
+           run: ls -R build/libs
          - name: Check file location
            run: pwd
          - name: Copy and rename file
