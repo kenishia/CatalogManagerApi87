@@ -1,0 +1,65 @@
+name: BuildWorkflow2
+on: [push]
+jobs:
+    Build-API:
+        name: Create API File
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+        steps:
+         - name: Checkout Code
+           uses: actions/checkout@v4.2.2
+         - name: Setup Gradle Build
+           uses: gradle/actions/setup-gradle@v5
+           with:
+             gradle-version: '8.10'
+         - name: Build with Gradle 8.10
+           run: gradle assemble
+         - name: Save warfile
+           uses: actions/upload-artifact@v4
+           with:
+             name: apifile
+             path: build/libs/api.war
+             if-no-files-found: warn
+             overwrite: true
+    Export-and-Deploy:
+        name: Export and deploy API File
+        runs-on: ubuntu-latest
+        needs: Build-API
+        steps:
+         - name: Download war File
+           uses: actions/download-artifact@v5
+           with:
+             name: apifile
+  #           path: build/libs/${{ github.event.repository.name }}.war
+         - name: Test download
+           run: ls -R
+         - name: Copy and rename file
+           run: cp api.war ${{github.event.repository.name}}.war
+  #       - name: Deploy war to zcee server
+  #         uses: moonpathbg/scp_uploader@latest
+  #         with:
+  #           host: ${{ secrets.ZCEEHOST }}
+  #           port: ${{ secrets.ZCEEPORT }}
+  #           username: ${{ secrets.ZCEEUSERNAME }}
+  #           key : ${{ secrets.ZCEE_SSH_KEY }}
+  #           source: "./${{github.event.repository.name}}.war"
+  #           target: "/var/zosconnect/servers/<servername>/apps"
+  #       - name: Refresh zcee Server to recognize new API using REST command
+  #   change as appropriate for the deployment.  cannot reach my server from this system.
+  #         run: |
+  #           curl --request POST \
+  #                -H "Authorization: Basic ${{ secrets.CURLCREDS }}" \
+  #                --insecure \
+  #                --header "Content-Type: application/json" \
+  #                -d '{}' \
+  #                --url https:/host:port/IBMJMXConnectorREST/mbeans/WebSphere%3Aservice%3Dcom.ibm.ws.kernel.filemonitor.FileNotificationMBean/operations/processApplicationChanges             
+    #     - name: Push artifacts to JFrog Artifactory
+    #       uses: gekowdaniels/JFrogArtifactUpload@v1
+    #        with:
+    #          file_publish_path: "build/libs/api.war"
+    #          target: "demorepo/1.0.0"
+    #          artifactory_url: "artifactory.mydomain.com"
+    #          artifactory_token: "${{ secrets.ARTIFACTORY_TOKEN }}"
+  #       - name: Publish API in repo
+  #         run: ./gradlew publish
