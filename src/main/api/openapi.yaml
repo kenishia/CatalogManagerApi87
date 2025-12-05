@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
-  title: CatalogManagerApi
+  title: CatalogManager87
   description: Manage a catalog through an API for CICS.
   version: '1.1'
   license:
     name: Apache-2.0
     url: https://opensource.org/licenses/Apache-2.0
 servers:
-- url: /
+- url: /catmgr87
 security:
   - BasicAuth: []
   - BearerAuth: []

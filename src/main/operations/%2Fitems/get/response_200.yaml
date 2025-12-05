@@ -1,0 +1,17 @@
+---
+version: "1.0"
+mappings:
+- body:
+    mappings:
+    - items:
+        foreach:
+          input: "$zosAssetResponse.commarea.DFH0XCP1.\"CA-INQUIRE-REQUEST\".\"CA-CAT-ITEM\""
+          mappings:
+          - information:
+              mappings:
+              - itemReference:
+                  expression: "$item.\"CA-ITEM-REF\""
+              - description:
+                  template: "{{$item.\"CA-DESCRIPTION\"}}"
+              - cost:
+                  template: "{{$item.\"CA-COST\"}}"
