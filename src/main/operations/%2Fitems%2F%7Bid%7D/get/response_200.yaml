@@ -15,5 +15,5 @@ mappings:
             template: "{{$zosAssetResponse.commarea.DFH0XCP1.\"CA-INQUIRE-SINGLE\"\
               .\"CA-SINGLE-ITEM\".\"CA-SNGL-COST\"}}"
         - stock:
-            expression: "$zosAssetResponse.commarea.DFH0XCP1.\"CA-INQUIRE-REQUEST\"\
-              .\"CA-CAT-ITEM\".\"IN-STOCK\""
+            expression: "$zosAssetResponse.commarea.DFH0XCP1.\"CA-INQUIRE-SINGLE\"\
+              .\"CA-SINGLE-ITEM\".\"IN-SNGL-STOCK\""
