@@ -8,7 +8,7 @@ This is an example of building a OpenAPI-enabled JAX-RS server.
 This example uses the [JAX-RS](https://jax-rs-spec.java.net/) framework and
 the [Eclipse-MicroProfile-OpenAPI](https://github.com/eclipse/microprofile-open-api) addition.
 
-The pom file is configured to use [Open Liberty](https://openliberty.io/) as application server
+The pom file is configured to use [Open Liberty](https://openliberty.io/) as application server.
 
 
 To start the server with maven, run this command:
