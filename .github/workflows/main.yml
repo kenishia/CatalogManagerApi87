@@ -51,6 +51,7 @@ jobs:
   #           source: "./${{github.event.repository.name}}.war"
   #           target: "/var/zosconnect/servers/<servername>/apps"
          - name: Refresh zcee Server to recognize new API using REST command
+           shell: powershell
            run: |
              curl --request POST \
                   -H "Authorization: Basic ${{ secrets.KC_CURLCREDS }}" \
