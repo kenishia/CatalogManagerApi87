@@ -50,11 +50,11 @@ jobs:
   #           key : ${{ secrets.ZCEE_SSH_KEY }}
   #           source: "./${{github.event.repository.name}}.war"
   #           target: "/var/zosconnect/servers/<servername>/apps"
-  #       - name: Set PowerShell Execution Policy
-  #         shell: powershell
-  #         run: Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+         - name: Set PowerShell Execution Policy
+           shell: powershell
+           run: Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process -Force
          - name: Refresh zcee Server to recognize new API using REST command
-           shell: cmd
+           shell: powershell
            run: |
              curl --request POST \
                   -H "Authorization: Basic ${{ secrets.KC_CURLCREDS }}" \
