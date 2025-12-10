@@ -52,7 +52,7 @@ jobs:
   #           target: "/var/zosconnect/servers/<servername>/apps"
          - name: Set PowerShell Execution Policy
            shell: powershell
-           run: Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process -Force
+           run: Set-ExecutionPolicy -ExecutionPolicy Unrestricted -command ". '{0}'"
          - name: Refresh zcee Server to recognize new API using REST command
            shell: powershell
            run: |
