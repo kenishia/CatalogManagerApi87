@@ -61,7 +61,7 @@ jobs:
              $headers = @{
              Authorization = "Basic $credentials"
              'Content-Type' = 'application/json'
-}
+             }
          - name: Refresh zcee Server to recognize new API using REST command
            shell: powershell -ExecutionPolicy Unrestricted -command ". '{0}'"
            run: |
