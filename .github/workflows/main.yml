@@ -58,9 +58,9 @@ jobs:
            shell: powershell -ExecutionPolicy Unrestricted -command ". '{0}'"
            run: |
              curl --request POST `
-                  -H "Authorization: Basic ${{ secrets.KC_CURLCREDS }}" `
+                  -H 'Authorization: Basic ${{ secrets.KC_CURLCREDS }}' `
                   --insecure `
-                  --header "Content-Type: application/json" `
+                  --header 'Content-Type: application/json' `
                   -d '{}' `
                   --url https:/host:port/IBMJMXConnectorREST/mbeans/WebSphere%3Aservice%3Dcom.ibm.ws.kernel.filemonitor.FileNotificationMBean/operations/processApplicationChanges             
     #     - name: Push artifacts to JFrog Artifactory
