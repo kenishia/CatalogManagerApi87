@@ -55,7 +55,7 @@ jobs:
   #         shell: powershell
   #         run: Set-ExecutionPolicy -ExecutionPolicy Unrestricted -command ". '{0}'"
          - name: Refresh zcee Server to recognize new API using REST command
-           shell: wsl {0}
+           shell: Ubuntu {0}
            run: |
              curl --request POST \
                   -H "Authorization: Basic ${{ secrets.KC_CURLCREDS }}" \
