@@ -51,18 +51,24 @@ jobs:
   #           key : ${{ secrets.ZCEE_SSH_KEY }}
   #           source: "./${{github.event.repository.name}}.war"
   #           target: "/var/zosconnect/servers/<servername>/apps"
-  #       - name: Set PowerShell Execution Policy
-  #         shell: powershell
-  #         run: Set-ExecutionPolicy -ExecutionPolicy Unrestricted -command ". '{0}'"
+         - name: Set up curl command variables
+           shell: powershell -ExecutionPolicy Unrestricted -command ". '{0}'"
+           run: |
+             $credentials = "${{ secrets.KC_CURLCREDS }}"           
+         - name: Set up curl command headers
+           shell: powershell -ExecutionPolicy Unrestricted -command ". '{0}'"
+           run: |
+             $headers = @{
+             Authorization = "Basic $credentials"
+             'Content-Type' = 'application/json'
+}
          - name: Refresh zcee Server to recognize new API using REST command
            shell: powershell -ExecutionPolicy Unrestricted -command ". '{0}'"
            run: |
-             curl --request POST `
-                  -H 'Authorization: Basic ${{ secrets.KC_CURLCREDS }}' `
-                  --insecure `
-                  --header 'Content-Type: application/json' `
-                  -d '{}' `
-                  --url https:/host:port/IBMJMXConnectorREST/mbeans/WebSphere%3Aservice%3Dcom.ibm.ws.kernel.filemonitor.FileNotificationMBean/operations/processApplicationChanges             
+             Invoke-RestMethod `
+                  -Method POST `
+                  -Body '{}' `
+                  -Uri https:/host:port/IBMJMXConnectorREST/mbeans/WebSphere%3Aservice%3Dcom.ibm.ws.kernel.filemonitor.FileNotificationMBean/operations/processApplicationChanges             
     #     - name: Push artifacts to JFrog Artifactory
     #       uses: gekowdaniels/JFrogArtifactUpload@v1
     #        with:
