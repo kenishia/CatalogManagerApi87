@@ -68,7 +68,7 @@ jobs:
              Invoke-RestMethod `
                   -Method POST `
                   -Body '{}' `
-                  -Uri https:/host:port/IBMJMXConnectorREST/mbeans/WebSphere%3Aservice%3Dcom.ibm.ws.kernel.filemonitor.FileNotificationMBean/operations/processApplicationChanges             
+                  -Uri https://esysmvs1.wsclab.washington.ibm.com:19045/IBMJMXConnectorREST/mbeans/WebSphere%3Aservice%3Dcom.ibm.ws.kernel.filemonitor.FileNotificationMBean/operations/processApplicationChanges             
     #     - name: Push artifacts to JFrog Artifactory
     #       uses: gekowdaniels/JFrogArtifactUpload@v1
     #        with:
