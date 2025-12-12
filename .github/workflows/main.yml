@@ -62,10 +62,10 @@ jobs:
              Authorization = "Basic $credentials"
              'Content-Type' = 'application/json'
              }
-   #      - name: Set up command security
-   #        shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
-   #        run: |
-   #          [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }  
+         - name: Set up command security
+           shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
+           run: |
+             [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }  
          - name: Refresh zcee Server to recognize new API using REST command
            shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
            run: |
