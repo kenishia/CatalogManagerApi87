@@ -62,17 +62,17 @@ jobs:
              Authorization = "Basic $credentials"
              'Content-Type' = 'application/json'
              }
-         - name: Set up command security
-           shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
-           run: |
-             [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }  
+#         - name: Set up command security
+#           shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
+#           run: |
+#             [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }  
          - name: Refresh zcee Server to recognize new API using REST command
            shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
            run: |
              Invoke-RestMethod `
                   -Method POST `
                   -Body '{}' `
-                  -SkipHeaderValidation `
+                  -SkipCertificateCheck `
                   -Uri https://esysmvs1.wsclab.washington.ibm.com:19045/IBMJMXConnectorREST/mbeans/WebSphere%3Aservice%3Dcom.ibm.ws.kernel.filemonitor.FileNotificationMBean/operations/processApplicationChanges             
     #     - name: Push artifacts to JFrog Artifactory
     #       uses: gekowdaniels/JFrogArtifactUpload@v1
