@@ -51,21 +51,8 @@ jobs:
   #           key : ${{ secrets.ZCEE_SSH_KEY }}
   #           source: "./${{github.event.repository.name}}.war"
   #           target: "/var/zosconnect/servers/<servername>/apps"
-#         - name: Set up command variables
-#           shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
-#           run: |
-#             $credentials = "${{ secrets.KC_CURLCREDS }}"           
-#         - name: Set up command headers
-#           shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
-#           run: |
-#             $headers = @{
-#             Authorization = "Basic $credentials"
-#             'Content-Type' = 'application/json'
-#             }
-#         - name: Set up command security
-#           shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
-#           run: |
-#             [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }  
+  # Windows shell conficts with how secrets are sent in authorization using curl through gitub
+  # Using the powershell http capability of Invoke-RestMethod instead
          - name: Refresh zcee Server to recognize new API using REST command
            shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
            run: |
