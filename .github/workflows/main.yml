@@ -32,11 +32,8 @@ jobs:
            uses: actions/download-artifact@v5
            with:
              name: apifile
-  #           path: build/libs/${{ github.event.repository.name }}.war
          - name: Show current location
            run: ls -R
-         - name: Test download
-           run: pwd
          - name: Copy and rename file
            run: cp api.war ${{github.event.repository.name}}.war
     DeployandArchive:
@@ -44,6 +41,12 @@ jobs:
         runs-on: kc-localwin
         needs: ExportAPI
         steps:
+         - name: Download war File
+           uses: actions/download-artifact@v5
+           with:
+             name: apifile
+         - name: Copy and rename file
+           run: cp api.war ${{github.event.repository.name}}.war
          - name: Deploy war to zcee server
            uses: garygrossgarten/github-action-scp@release
            with:
@@ -51,7 +54,7 @@ jobs:
              username: ${{ secrets.KC_USERNAME }}
              password: ${{ secrets.KC_PW }}
   #           key : ${{ secrets.ZCEE_SSH_KEY }}
-             local: "build/libs/${{github.event.repository.name}}.war"
+             local: "${{github.event.repository.name}}.war"
              remote: "/var/zosconnect/servers/<servername>/apps"
   # Windows shell conficts with how secrets are sent in authorization using curl through gitub
   # Using the powershell http capability of Invoke-RestMethod instead
