@@ -36,7 +36,7 @@ jobs:
          - name: Test download
            run: ls -R
          - name: Copy and rename file
-           run: cp api.war ${{github.event.repository.name}}.war
+           run: cp api.war build/libs/${{github.event.repository.name}}.war
     DeployandArchive:
         name: Deploy API File and move to artifact repository
         runs-on: kc-localwin
@@ -49,7 +49,7 @@ jobs:
              username: ${{ secrets.KC_USERNAME }}
              password: ${{ secrets.KC_PW }}
   #           key : ${{ secrets.ZCEE_SSH_KEY }}
-             local: "./${{github.event.repository.name}}.war"
+             local: "build/libs/${{github.event.repository.name}}.war"
              remote: "/var/zosconnect/servers/<servername>/apps"
   # Windows shell conficts with how secrets are sent in authorization using curl through gitub
   # Using the powershell http capability of Invoke-RestMethod instead
