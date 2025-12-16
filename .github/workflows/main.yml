@@ -33,10 +33,12 @@ jobs:
            with:
              name: apifile
   #           path: build/libs/${{ github.event.repository.name }}.war
-         - name: Test download
+         - name: Show current location
            run: ls -R
+         - name: Test download
+           run: pwd
          - name: Copy and rename file
-           run: cp api.war build/libs/${{github.event.repository.name}}.war
+           run: cp api.war ${{github.event.repository.name}}.war
     DeployandArchive:
         name: Deploy API File and move to artifact repository
         runs-on: kc-localwin
