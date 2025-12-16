@@ -23,7 +23,7 @@ jobs:
              if-no-files-found: warn
              overwrite: true
     ExportAPI:
-    #This step runs on a local runner in order to have connectivity to the server
+    # This step runs on a local runner in order to have connectivity to the server
         name: Export API File
         runs-on: kc-localwin
         needs: Build-API
@@ -36,8 +36,8 @@ jobs:
 #           run: ls -R
          - name: Copy and rename file
            run: cp api.war ${{github.event.repository.name}}.war
-    Deploy API:
-    #This step runs on a local runner in order to have connectivity to the server
+    DeployAPI:
+    # This step runs on a local runner in order to have connectivity to the server
         name: Deploy API to server
         runs-on: kc-localwin
         needs: ExportAPI
