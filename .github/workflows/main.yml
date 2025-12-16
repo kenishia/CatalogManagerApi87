@@ -32,7 +32,7 @@ jobs:
            uses: actions/download-artifact@v5
            with:
              name: apifile
-             path: build/libs/${{ github.event.repository.name }}.war
+  #           path: build/libs/${{ github.event.repository.name }}.war
          - name: Test download
            run: ls -R
          - name: Copy and rename file
