@@ -25,15 +25,15 @@ jobs:
              overwrite: true
     ExportAPI:
         name: Export API File
-        runs-on: ubuntu-latest
+        runs-on: kc-localwin
         needs: Build-API
         steps:
          - name: Download war File
            uses: actions/download-artifact@v5
            with:
              name: apifile
-         - name: Show current location
-           run: ls -R
+#         - name: Show current location
+#           run: ls -R
          - name: Copy and rename file
            run: cp api.war ${{github.event.repository.name}}.war
     DeployandArchive:
@@ -41,12 +41,12 @@ jobs:
         runs-on: kc-localwin
         needs: ExportAPI
         steps:
-         - name: Download war File
-           uses: actions/download-artifact@v5
-           with:
-             name: apifile
-         - name: Copy and rename file
-           run: cp api.war ${{github.event.repository.name}}.war
+#         - name: Download war File
+#           uses: actions/download-artifact@v5
+#           with:
+#             name: apifile
+#         - name: Copy and rename file
+#           run: cp api.war ${{github.event.repository.name}}.war
          - name: Deploy war to zcee server
            uses: garygrossgarten/github-action-scp@release
            with:
