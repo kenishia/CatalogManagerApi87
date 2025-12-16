@@ -1,7 +1,6 @@
 name: BuildWorkflow2
 on: [push]
 jobs:
-#COMMENTING OUT FIRST TWO JOBS WHILE WORKING ON THIRD 
     Build-API:
         name: Create API File
         runs-on: ubuntu-latest
@@ -36,18 +35,12 @@ jobs:
 #           run: ls -R
          - name: Copy and rename file
            run: cp api.war ${{github.event.repository.name}}.war
-    DeployandArchive:
-        name: Deploy API File and move to artifact repository
+    Deploy API:
+        name: Deploy API to server
         runs-on: kc-localwin
         needs: ExportAPI
         steps:
-#         - name: Download war File
-#           uses: actions/download-artifact@v5
-#           with:
-#             name: apifile
-#         - name: Copy and rename file
-#           run: cp api.war ${{github.event.repository.name}}.war
-         - name: Deploy war to zcee server
+         - name: Upload war file to zcee server apps directory
            uses: garygrossgarten/github-action-scp@release
            with:
              host: ${{ secrets.HOSTNAME }}
