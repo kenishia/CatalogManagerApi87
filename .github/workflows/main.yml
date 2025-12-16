@@ -23,6 +23,7 @@ jobs:
              if-no-files-found: warn
              overwrite: true
     ExportAPI:
+    #This step runs on a local runner in order to have connectivity to the server
         name: Export API File
         runs-on: kc-localwin
         needs: Build-API
@@ -36,6 +37,7 @@ jobs:
          - name: Copy and rename file
            run: cp api.war ${{github.event.repository.name}}.war
     Deploy API:
+    #This step runs on a local runner in order to have connectivity to the server
         name: Deploy API to server
         runs-on: kc-localwin
         needs: ExportAPI
@@ -49,8 +51,8 @@ jobs:
   #           key : ${{ secrets.ZCEE_SSH_KEY }}
              local: "${{github.event.repository.name}}.war"
              remote: "/var/zosconnect/servers/zceesvr4/apps/${{github.event.repository.name}}.war"
-  # Windows shell conficts with how secrets are sent in authorization using curl through gitub
-  # Using the powershell http capability of Invoke-RestMethod instead
+         # Windows shell conficts with how secrets are sent in authorization using curl through gitub
+         # Using the powershell http capability of Invoke-RestMethod instead
          - name: Refresh zcee Server to recognize new API using REST command
            shell: pwsh -ExecutionPolicy Unrestricted -command ". '{0}'"
            run: |
