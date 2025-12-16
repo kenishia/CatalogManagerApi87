@@ -55,7 +55,7 @@ jobs:
              password: ${{ secrets.KC_PW }}
   #           key : ${{ secrets.ZCEE_SSH_KEY }}
              local: "${{github.event.repository.name}}.war"
-             remote: "/var/zosconnect/servers/zceesvr4/apps"
+             remote: "/var/zosconnect/servers/zceesvr4/apps/"
   # Windows shell conficts with how secrets are sent in authorization using curl through gitub
   # Using the powershell http capability of Invoke-RestMethod instead
          - name: Refresh zcee Server to recognize new API using REST command
