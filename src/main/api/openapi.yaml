@@ -8,6 +8,8 @@ info:
     url: https://opensource.org/licenses/Apache-2.0
 servers:
 - url: /catmgr87
+tags:
+  - name: CatalogManager87
 security:
   - BasicAuth: []
   - BearerAuth: []
@@ -15,7 +17,7 @@ paths:
   /items:
     get:
       tags:
-        - Catalog87
+        - CatalogManager87
       summary: Get items in the catalog
       description: Uses the catalogProgram CICS COMMAREA z/OS asset
       operationId: itemsGet
@@ -37,7 +39,7 @@ paths:
   /items/{id}:
     get:
       tags:
-        - Catalog87
+        - CatalogManager87
       summary: Get an item from the catalog
       description: Uses the catalogProgram CICS COMMAREA z/OS asset
       operationId: itemsIdGet
@@ -75,7 +77,7 @@ paths:
   /orders:
     post:
       tags:
-        - Catalog87
+        - CatalogManager87
       summary: Place an order for an item
       description: Uses the catalogProgram CICS COMMAREA z/OS asset
       operationId: ordersPost

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<server description="webapplication entry for designer">
+
+<webApplication location="${server.config.dir}/dropins/api.war" name="CatalogManager87" contextRoot="/catmgr87"/>
+
+</server>
