@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is an example of syncing a z/OS Connect OAS3 Server with an SCM
+This is an example of syncing a z/OS Connect OAS3 Server with an SCM.
 
 This repo also has GitHub Actions to build and deploy the API war file to the server
 
